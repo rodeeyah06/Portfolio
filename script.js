@@ -9,18 +9,20 @@ document.addEventListener('DOMContentLoaded', function() {
         navToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
         });
-
-        // Close mobile menu when clicking on a link
-        const navLinks = document.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-            });
-        });
     }
 
-// Smooth scrolling for navigation links
-navLinks.forEach(link => {
+    // Close mobile menu when clicking on a link and smooth scrolling
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (navMenu) {
+                navMenu.classList.remove('active');
+            }
+        });
+    });
+
+    // Smooth scrolling for navigation links
+    navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
         const targetId = link.getAttribute('href');

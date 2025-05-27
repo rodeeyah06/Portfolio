@@ -1,4 +1,3 @@
-
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Mobile Navigation Toggle
@@ -14,29 +13,25 @@ document.addEventListener('DOMContentLoaded', function() {
     // Close mobile menu when clicking on a link and smooth scrolling
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
-        link.addEventListener('click', () => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+
             if (navMenu) {
                 navMenu.classList.remove('active');
             }
+
+            const targetId = link.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+
+            if (targetSection) {
+                const offsetTop = targetSection.offsetTop - 80; // Account for fixed nav height
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
         });
     });
-
-    // Smooth scrolling for navigation links
-    navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetId = link.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
-        
-        if (targetSection) {
-            const offsetTop = targetSection.offsetTop - 80; // Account for fixed nav height
-            window.scrollTo({
-                top: offsetTop,
-                behavior: 'smooth'
-            });
-        }
-    });
-});
 
 // Add scroll effect to navigation
 window.addEventListener('scroll', () => {
@@ -88,24 +83,24 @@ const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        
+
         // Get form data
         const name = contactForm.querySelector('input[placeholder="Your Name"]').value;
         const email = contactForm.querySelector('input[placeholder="Your Email"]').value;
         const message = contactForm.querySelector('textarea').value;
-        
+
         // Simple validation
         if (!name || !email || !message) {
             alert('Please fill in all fields.');
             return;
         }
-        
+
         // Simulate form submission
         const submitBtn = contactForm.querySelector('button');
         const originalText = submitBtn.textContent;
         submitBtn.textContent = 'Sending...';
         submitBtn.disabled = true;
-        
+
         setTimeout(() => {
             alert('Thank you for your message! I\'ll get back to you soon.');
             contactForm.reset();
@@ -119,7 +114,7 @@ if (contactForm) {
 function typeWriter(element, text, speed = 100) {
     let i = 0;
     element.textContent = '';
-    
+
     function type() {
         if (i < text.length) {
             element.textContent += text.charAt(i);
@@ -127,7 +122,7 @@ function typeWriter(element, text, speed = 100) {
             setTimeout(type, speed);
         }
     }
-    
+
     type();
 }
 
@@ -148,31 +143,31 @@ function createParticle() {
     particle.style.borderRadius = '50%';
     particle.style.pointerEvents = 'none';
     particle.style.opacity = '0.6';
-    
+
     const hero = document.querySelector('.hero');
     particle.style.left = Math.random() * window.innerWidth + 'px';
     particle.style.top = Math.random() * hero.offsetHeight + 'px';
-    
+
     hero.appendChild(particle);
-    
+
     // Animate particle
     let yPos = parseInt(particle.style.top);
     let opacity = 0.6;
-    
+
     const animate = () => {
         yPos -= 2;
         opacity -= 0.01;
-        
+
         particle.style.top = yPos + 'px';
         particle.style.opacity = opacity;
-        
+
         if (opacity <= 0 || yPos <= 0) {
             particle.remove();
         } else {
             requestAnimationFrame(animate);
         }
     };
-    
+
     animate();
 }
 

@@ -28,7 +28,9 @@ body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
     color: var(--text-primary);
-    background-color: var(--bg-primary);
+    background: linear-gradient(135deg, #1e3a8a 0%, #000000 50%, #1e40af 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
 }
 
 /* Navigation */
@@ -110,7 +112,7 @@ body {
     display: flex;
     align-items: center;
     padding: 0 2rem;
-    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    background: transparent;
 }
 
 .hero-container {
@@ -246,7 +248,8 @@ body {
 /* About Section */
 .about {
     padding: 5rem 0;
-    background-color: var(--bg-secondary);
+    background-color: rgba(248, 250, 252, 0.95);
+    backdrop-filter: blur(10px);
 }
 
 .about-content {
@@ -286,6 +289,7 @@ body {
 /* Projects Section */
 .projects {
     padding: 5rem 0;
+    background: transparent;
 }
 
 .projects-grid {
@@ -394,7 +398,8 @@ body {
 /* Contact Section */
 .contact {
     padding: 5rem 0;
-    background-color: var(--bg-secondary);
+    background-color: rgba(248, 250, 252, 0.95);
+    backdrop-filter: blur(10px);
 }
 
 .contact-description {
@@ -501,6 +506,7 @@ body {
 /* Services Section */
 .services {
     padding: 5rem 0;
+    background: transparent;
 }
 
 .services-grid {
